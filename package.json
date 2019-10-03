@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "author": "@lynoapp",
   "license": "MIT",
+  "repository": "https://github.com/lynoapp/react-router-title",
   "files": [
     "dist"
   ],

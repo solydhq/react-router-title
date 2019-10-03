@@ -66,7 +66,7 @@ const getTitle = (
 
 interface RouterTitleProps {
   routesConfig: RouteConfigExtended;
-  callback?: (titleObject: TitleObject, location: Location) => string;
+  callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
   pageTitle?: string;
   divider?: string;
 }
