@@ -1,7 +1,8 @@
 {
   "name": "react-router-title",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": "@lynoapp",
   "license": "MIT",
   "repository": "https://github.com/lynoapp/react-router-title",
@@ -9,7 +10,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --declaration",
     "prepack": "yarn build"
   },
   "peerDependencies": {
