@@ -1,0 +1,21 @@
+{
+  "name": "react-router-title",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "@lynoapp",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "react-router": ">=5.1"
+  },
+  "devDependencies": {
+    "@types/react-router": "^5.1.1",
+    "@types/react-router-config": "^5.0.1",
+    "typescript": "^3.6.3"
+  }
+}
