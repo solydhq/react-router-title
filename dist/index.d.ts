@@ -14,7 +14,7 @@ export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
     routes?: Routes;
 }
 interface RouterTitleProps {
-    routesConfig: RouteConfigExtended;
+    routesConfig: Routes;
     callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
     pageTitle?: string;
     divider?: string;
