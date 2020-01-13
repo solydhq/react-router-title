@@ -69,6 +69,7 @@ interface RouterTitleProps {
   callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
   pageTitle?: string;
   divider?: string;
+  prefix?: string;
 }
 
 const RouterTitle = ({
@@ -76,6 +77,7 @@ const RouterTitle = ({
   routesConfig,
   callback = ({ title }) => title,
   divider = "·",
+  prefix,
 }: RouterTitleProps) => {
   const location = useLocation();
 
@@ -90,7 +92,7 @@ const RouterTitle = ({
       location,
     ),
   ).then((title) => {
-    document.title = title;
+    document.title = prefix ? `${prefix}${title}` : title;
   });
 
   return null;

@@ -93,6 +93,7 @@ const routes = {
 | routesConfig | true     | array/object |
 | divider      | false    | string       | `·`
 | callback     | false    | function     | `({ title }) => title`
+| prefix       | false    | string       |
 
 ### Dynamic Title
 
