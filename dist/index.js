@@ -38,10 +38,10 @@ const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
         params: currentMatch ? currentMatch.params : matchCache.params,
     };
 };
-const RouterTitle = ({ pageTitle, routesConfig, callback = ({ title }) => title, divider = "·", }) => {
+const RouterTitle = ({ pageTitle, routesConfig, callback = ({ title }) => title, divider = "·", prefix, }) => {
     const location = react_router_1.useLocation();
     Promise.resolve(callback(getTitle(routesConfig, location.pathname, divider, pageTitle && [pageTitle]), location)).then((title) => {
-        document.title = title;
+        document.title = prefix ? `${prefix}${title}` : title;
     });
     return null;
 };

@@ -18,6 +18,7 @@ interface RouterTitleProps {
     callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
     pageTitle?: string;
     divider?: string;
+    prefix?: string;
 }
-declare const RouterTitle: ({ pageTitle, routesConfig, callback, divider, }: RouterTitleProps) => any;
+declare const RouterTitle: ({ pageTitle, routesConfig, callback, divider, prefix, }: RouterTitleProps) => any;
 export default RouterTitle;
