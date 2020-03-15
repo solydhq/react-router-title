@@ -96,7 +96,7 @@ const RouterTitle = ({
     ).then((title) => {
       document.title = prefix ? `${prefix}${title}` : title;
     });
-  }, [pageTitle, prefix, divider]);
+  });
 
   return null;
 };
