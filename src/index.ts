@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { match, matchPath, useLocation } from "react-router";
 import { RouteConfig } from "react-router-config";
 import { Location } from "history";
@@ -81,18 +82,20 @@ const RouterTitle = ({
 }: RouterTitleProps) => {
   const location = useLocation();
 
-  Promise.resolve(
-    callback(
-      getTitle(
-        routesConfig,
-        location.pathname,
-        divider,
-        pageTitle && [pageTitle],
+  useEffect(() => {
+    Promise.resolve(
+      callback(
+        getTitle(
+          routesConfig,
+          location.pathname,
+          divider,
+          pageTitle && [pageTitle],
+        ),
+        location,
       ),
-      location,
-    ),
-  ).then((title) => {
-    document.title = prefix ? `${prefix}${title}` : title;
+    ).then((title) => {
+      document.title = prefix ? `${prefix}${title}` : title;
+    });
   });
 
   return null;
