@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = require("react");
 const react_router_1 = require("react-router");
 const getRoute = (routesConfig, path) => {
     let route;
@@ -40,8 +41,10 @@ const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
 };
 const RouterTitle = ({ pageTitle, routesConfig, callback = ({ title }) => title, divider = "·", prefix, }) => {
     const location = react_router_1.useLocation();
-    Promise.resolve(callback(getTitle(routesConfig, location.pathname, divider, pageTitle && [pageTitle]), location)).then((title) => {
-        document.title = prefix ? `${prefix}${title}` : title;
+    react_1.useEffect(() => {
+        Promise.resolve(callback(getTitle(routesConfig, location.pathname, divider, pageTitle && [pageTitle]), location)).then((title) => {
+            document.title = prefix ? `${prefix}${title}` : title;
+        });
     });
     return null;
 };
