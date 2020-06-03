@@ -1,7 +1,7 @@
 import { match } from "react-router";
 import { RouteConfig } from "react-router-config";
 import { Location } from "history";
-interface TitleObject {
+export interface TitleObject {
     title: string;
     titles: string[];
     params: match["params"];
@@ -13,7 +13,7 @@ export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
     title: string;
     routes?: Routes;
 }
-interface RouterTitleProps {
+export interface RouterTitleProps {
     routesConfig: Routes;
     callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
     pageTitle?: string;

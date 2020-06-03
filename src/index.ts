@@ -3,7 +3,7 @@ import { match, matchPath, useLocation } from "react-router";
 import { RouteConfig } from "react-router-config";
 import { Location } from "history";
 
-interface TitleObject {
+export interface TitleObject {
   title: string;
   titles: string[];
   params: match["params"];
@@ -65,7 +65,7 @@ const getTitle = (
   };
 };
 
-interface RouterTitleProps {
+export interface RouterTitleProps {
   routesConfig: Routes;
   callback?: (titleObject: TitleObject, location: Location) => Promise<string> | string;
   pageTitle?: string;
