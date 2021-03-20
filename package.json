@@ -11,14 +11,15 @@
   ],
   "scripts": {
     "build": "tsc --declaration",
-    "prepack": "yarn build"
+    "prepack": "yarn build",
+    "update": "yarn upgrade-interactive --latest"
   },
   "peerDependencies": {
     "react-router": ">=5.1"
   },
   "devDependencies": {
-    "@types/react-router": "^5.1.7",
-    "@types/react-router-config": "^5.0.1",
-    "typescript": "^3.9.3"
+    "@types/react-router": "5.1.12",
+    "@types/react-router-config": "5.0.2",
+    "typescript": "4.2.3"
   }
 }
