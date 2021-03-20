@@ -26,7 +26,7 @@ import { Router } from 'react-router-dom';
 
 const App = () => (
   <Router>
-    <RouterTitle pageTitle="lyno" routesConfig={routes} />
+    <RouterTitle pageTitle="My Company Name" routesConfig={routes} />
     {/* your routes */}
   </Router>
 );
