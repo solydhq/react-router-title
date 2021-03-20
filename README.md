@@ -2,11 +2,12 @@
 
 This component add the possibility to have a dynamic document title based on the [react-router-config](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-config/README.md). It combines all titles for the affected routes and sub-routes to one string. Additionally you can modify the title in a callback function which gives you the possibility to query data and replace some strings in the title for example.
 
-* [Installation](#installation)
-* [Usage](#usage)
-* [Config](#config)
-  * [Props](#props)
-  * [Dynamic Title](#dynamic-title)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Config](#config)
+  - [Props](#props)
+  - [Dynamic Title](#dynamic-title)
+  - [Disable concatenation with parent route titles & page title](#disable-concatenation-with-parent-route-titles--page-title)
 
 ## Installation
 
@@ -117,4 +118,32 @@ export const callback = async (
 
   return newTitle;
 }
+```
+
+### Disable concatenation with parent route titles & page title
+
+If you want to only show a title without combining them with the parent ones & page title you can use the `titleConcat` option on the route of your choice.
+
+```javascript
+const routes = {
+  root: {
+    title: "Family",
+    component: Root,
+    routes: {
+      child: {
+        title: "Child",
+        titleConcat: false,
+        path: "/child/:id",
+        component: Child,
+        routes: {
+          grandChild: {
+            title: "Grand Child",
+            path: "/child/:id/grand-child",
+            component: GrandChild
+          }
+        }
+      }
+    }
+  }
+};
 ```
