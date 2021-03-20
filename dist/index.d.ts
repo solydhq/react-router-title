@@ -11,6 +11,7 @@ declare type Routes = RouteConfigExtended[] | {
 };
 export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
     title: string;
+    titleAsStandalone?: string;
     routes?: Routes;
 }
 export interface RouterTitleProps {

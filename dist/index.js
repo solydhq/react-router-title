@@ -25,7 +25,7 @@ const getRoute = (routesConfig, path) => {
 };
 const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
     const { route, currentMatch } = getRoute(routesConfig, path);
-    if (route) {
+    if (route && !route.titleAsStandalone) {
         if (route.title) {
             titles.push(route.title);
         }
@@ -34,7 +34,7 @@ const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
         }
     }
     return {
-        title: titles.reverse().join(` ${divider} `),
+        title: route.titleAsStandalone ? route.title : titles.reverse().join(` ${divider} `),
         titles,
         params: currentMatch ? currentMatch.params : matchCache.params,
     };
