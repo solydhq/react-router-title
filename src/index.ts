@@ -51,16 +51,16 @@ const getTitle = (
 ): TitleObject => {
   const { route, currentMatch } = getRoute(routesConfig, path);
 
-  if (route) {
+  if (route && route.titleConcat !== false) {
     if (route.title) { titles.push(route.title); }
 
-    if (route.routes && route.titleConcat !== false) {
+    if (route.routes) {
       return getTitle(route.routes, path, divider, titles, currentMatch || matchCache);
     }
   }
 
   return {
-    title: titles.reverse().join(` ${divider} `),
+    title: route.titleConcat !== false ? titles.reverse().join(` ${divider} `) : route.title,
     titles,
     params: currentMatch ? currentMatch.params : matchCache.params,
   };
