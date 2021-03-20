@@ -15,6 +15,7 @@ type Routes = RouteConfigExtended[] | {
 
 export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
   title: string;
+  titleAsStandalone?: string;
   routes?: Routes;
 }
 
@@ -50,7 +51,7 @@ const getTitle = (
 ): TitleObject => {
   const { route, currentMatch } = getRoute(routesConfig, path);
 
-  if (route) {
+  if (route && !route.titleAsStandalone) {
     if (route.title) { titles.push(route.title); }
 
     if (route.routes) {
@@ -59,7 +60,7 @@ const getTitle = (
   }
 
   return {
-    title: titles.reverse().join(` ${divider} `),
+    title: route.titleAsStandalone ? route.title : titles.reverse().join(` ${divider} `),
     titles,
     params: currentMatch ? currentMatch.params : matchCache.params,
   };
