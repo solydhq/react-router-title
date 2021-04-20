@@ -25,7 +25,7 @@ const getRoute = (routesConfig, path) => {
 };
 const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
     const { route, currentMatch } = getRoute(routesConfig, path);
-    if (route && route.titleConcat !== false) {
+    if ((route === null || route === void 0 ? void 0 : route.titleConcat) !== false) {
         if (route.title) {
             titles.push(route.title);
         }
@@ -34,7 +34,7 @@ const getTitle = (routesConfig, path, divider, titles = [], matchCache) => {
         }
     }
     return {
-        title: route.titleConcat !== false ? titles.reverse().join(` ${divider} `) : route.title,
+        title: (route === null || route === void 0 ? void 0 : route.titleConcat) === false ? route.title : titles.reverse().join(` ${divider} `),
         titles,
         params: currentMatch ? currentMatch.params : matchCache.params,
     };
