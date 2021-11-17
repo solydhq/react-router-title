@@ -1,18 +1,18 @@
-import { match } from "react-router";
-import { RouteConfig } from "react-router-config";
-import { Location } from "history";
+import { PathMatch, RouteObject } from 'react-router';
+import { Location } from 'history';
 export interface TitleObject {
     title: string;
     titles: string[];
-    params: match["params"];
+    params: PathMatch['params'];
 }
 declare type Routes = RouteConfigExtended[] | {
     [name: string]: RouteConfigExtended;
 };
-export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
+export interface RouteConfigExtended extends Omit<RouteObject, 'children'> {
     title: string;
     titleConcat?: boolean;
-    routes?: Routes;
+    children?: Routes;
+    path: string;
 }
 export interface RouterTitleProps {
     routesConfig: Routes;
