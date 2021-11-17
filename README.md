@@ -20,7 +20,7 @@ yarn add react-router-title
 ## Usage
 
 Add the `RouterTitle` component as a direct child of `Router`.
-```react
+```jsx
 import RouterTitle from 'react-router-title';
 import { Router } from 'react-router-dom';
 
@@ -38,22 +38,24 @@ export default App;
 
 This component is using the [react-router-config](https://github.com/ReactTraining/react-router/blob/master/packages/react-router-config/README.md) to generate the title.
 
+> Please note that it's currently not supported to use the new relative route paths introduced with React Router 6.
+
 For this you have to extend the configuration with a title for each route.
-```javascript
+```jsx
 const routes = [
   {
-    title: "",
-    component: Root,
-    routes: [
+    title: '',
+    element: <Root />,
+    children: [
       {
-        title: "Child",
-        path: "/child/:id",
-        component: Child,
-        routes: [
+        title: 'Child',
+        path: '/child/:id',
+        element: <Child />,
+        children: [
           {
-            title: "Grand Child",
-            path: "/child/:id/grand-child",
-            component: GrandChild
+            title: 'Grand Child',
+            path: '/child/:id/grand-child',
+            element: <GrandChild />
           }
         ]
       }
@@ -63,21 +65,21 @@ const routes = [
 ```
 
 Alternatively you can also use the routes config as an object.
-```javascript
+```jsx
 const routes = {
   root: {
-    title: "",
-    component: Root,
-    routes: {
+    title: '',
+    element: <Root />,
+    children: {
       child: {
-        title: "Child",
-        path: "/child/:id",
-        component: Child,
-        routes: {
+        title: 'Child',
+        path: '/child/:id',
+        element: <Child />,
+        children: {
           grandChild: {
-            title: "Grand Child",
-            path: "/child/:id/grand-child",
-            component: GrandChild
+            title: 'Grand Child',
+            path: '/child/:id/grand-child',
+            element: <GrandChild />
           }
         }
       }
@@ -111,9 +113,9 @@ export const callback = async (
 ) => {
   let newTitle = title;
 
-  if (params.projectSlug && title.search(":projectName") !== -1) {
+  if (params.projectSlug && title.search(':projectName') !== -1) {
     const { projectName } = await getProjectData(projectSlug);
-    newTitle = newTitle.replace(":projectName", projectName);
+    newTitle = newTitle.replace(':projectName', projectName);
   }
 
   return newTitle;
@@ -124,22 +126,22 @@ export const callback = async (
 
 If you want to only show a title without combining them with the parent ones & page title you can use the `titleConcat` option on the route of your choice.
 
-```javascript
+```jsx
 const routes = {
   root: {
-    title: "Family",
-    component: Root,
-    routes: {
+    title: 'Family',
+    element: <Root />,
+    children: {
       child: {
-        title: "Child",
+        title: 'Child',
         titleConcat: false,
-        path: "/child/:id",
-        component: Child,
-        routes: {
+        path: '/child/:id',
+        element: <Child />,
+        children: {
           grandChild: {
-            title: "Grand Child",
-            path: "/child/:id/grand-child",
-            component: GrandChild
+            title: 'Grand Child',
+            path: '/child/:id/grand-child',
+            element: <GrandChild />
           }
         }
       }
