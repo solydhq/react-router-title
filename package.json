@@ -15,11 +15,11 @@
     "update": "yarn upgrade-interactive --latest"
   },
   "peerDependencies": {
-    "react-router": ">=5.1"
+    "react-router": ">=6"
   },
   "devDependencies": {
-    "@types/react-router": "5.1.13",
-    "@types/react-router-config": "5.0.2",
-    "typescript": "4.2.4"
+    "@types/react": "17.0.35",
+    "react-router": "6.0.2",
+    "typescript": "4.5.2"
   }
 }

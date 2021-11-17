@@ -1,36 +1,36 @@
-import { useEffect } from "react";
-import { match, matchPath, useLocation } from "react-router";
-import { RouteConfig } from "react-router-config";
-import { Location } from "history";
+import { useEffect } from 'react';
+import { PathMatch, matchPath, useLocation, RouteObject } from 'react-router';
+import { Location } from 'history';
 
 export interface TitleObject {
   title: string;
   titles: string[];
-  params: match["params"];
+  params: PathMatch['params'];
 }
 
 type Routes = RouteConfigExtended[] | {
   [name: string]: RouteConfigExtended,
 };
 
-export interface RouteConfigExtended extends Omit<RouteConfig, "routes"> {
+export interface RouteConfigExtended extends Omit<RouteObject, 'children'> {
   title: string;
   titleConcat?: boolean;
-  routes?: Routes;
+  children?: Routes;
+  path: string;
 }
 
-const getRoute = (routesConfig: Routes, path: string): { route: RouteConfigExtended, currentMatch: match } => {
+const getRoute = (routesConfig: Routes, path: string): { route: RouteConfigExtended, currentMatch: PathMatch } => {
   let route: RouteConfigExtended;
-  let currentMatch: match;
+  let currentMatch: PathMatch;
 
   if (Array.isArray(routesConfig)) {
     route = routesConfig.find((routeConfig) => {
-      currentMatch = matchPath(path, routeConfig as RouteConfig);
+      currentMatch = matchPath(routeConfig, path);
       return currentMatch;
     });
   } else {
     const id: string = Object.keys(routesConfig).find((key) => {
-      currentMatch = matchPath(path, routesConfig[key] as RouteConfig);
+      currentMatch = matchPath(routesConfig[key], path);
       return currentMatch;
     });
     route = routesConfig[id];
@@ -47,7 +47,7 @@ const getTitle = (
   path: string,
   divider: string,
   titles: string[] = [],
-  matchCache?: match,
+  matchCache?: PathMatch,
 ): TitleObject => {
   const { route, currentMatch } = getRoute(routesConfig, path);
 
@@ -56,8 +56,8 @@ const getTitle = (
   if (route && concatenateTitles) {
     if (route.title) { titles.push(route.title); }
 
-    if (route.routes) {
-      return getTitle(route.routes, path, divider, titles, currentMatch || matchCache);
+    if (route.children) {
+      return getTitle(route.children, path, divider, titles, currentMatch || matchCache);
     }
   }
 
@@ -80,7 +80,7 @@ const RouterTitle = ({
   pageTitle,
   routesConfig,
   callback = ({ title }) => title,
-  divider = "·",
+  divider = '·',
   prefix,
 }: RouterTitleProps) => {
   const location = useLocation();
